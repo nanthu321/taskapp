@@ -13,12 +13,19 @@ public class DBConnection {
     static {
         HikariConfig config = new HikariConfig();
 
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/taskflow");
+      /*  config.setJdbcUrl("jdbc:mysql://localhost:3306/taskflow");
         config.setUsername("root");
         config.setPassword("nanthu_321");
-
+*/
+        
+        
+        config.setJdbcUrl(System.getenv("DB_URL"));
+        config.setUsername(System.getenv("DB_USER"));
+        config.setPassword(System.getenv("DB_PASSWORD"));
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
+        config.addDataSourceProperty("useSSL", "false");
+        config.addDataSourceProperty("allowPublicKeyRetrieval", "true");
        
         config.setMaximumPoolSize(10);   // max connections
         config.setMinimumIdle(2);
@@ -32,3 +39,8 @@ public class DBConnection {
         return dataSource.getConnection();
     }
 }
+
+DB_URL=jdbc:mysql://your-db-host:3306/taskdb
+DB_USER=root
+DB_PASSWORD=yourpassword
+JWT_SECRET=your_secret_key
