@@ -39,8 +39,3 @@ public class DBConnection {
         return dataSource.getConnection();
     }
 }
-
-DB_URL=jdbc:mysql://your-db-host:3306/taskdb
-DB_USER=root
-DB_PASSWORD=yourpassword
-JWT_SECRET=your_secret_key
