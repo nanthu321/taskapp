@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Dashboard</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+   
+    <div class="dashboard-layout">
+      
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-check-circle"></i>
+                    <span>TaskFlow</span>
+                </div>
+                <button class="sidebar-close" id="sidebarClose" onclick="toggleSidebar()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-filter="all">
+                    <i class="fas fa-th-large"></i>
+                    <span>All Tasks</span>
+                </a>
+          
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="sidebar-user" id="sidebarUser">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div class="user-info">
+                        <strong id="sidebarUsername">User</strong>
+                        <span id="sidebarEmail">user@email.com</span>
+                    </div>
+                </div>
+                <button class="btn btn-ghost btn-sm btn-logout" onclick="logoutUser()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Sidebar overlay for mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+        <!-- ===========================
+             MAIN CONTENT AREA
+             Contains header, stats, and task grid
+        =========================== -->
+        <main class="dashboard-main">
+            <!-- Dashboard Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="hamburger" id="hamburger" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div>
+                        <h1 id="dashboardGreeting">Good Morning</h1>
+                        <p id="dashboardSubtitle">Here's what's on your plate today</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="addTaskBtn" onclick="openTaskModal()">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Task</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <section class="stats-grid">
+                <div class="stat-card stat-total">
+                    <div class="stat-card-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="stat-card-info">  
+                        <h3 id="totalTasks">0</h3>
+                        <p>Total Tasks</p>
+                    </div>
+                </div>
+                <div class="stat-card stat-completed">
+                    <div class="stat-card-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-card-info">
+                        <h3 id="completedTasks">0</h3>
+                        <p>Completed</p>
+                    </div>
+                </div>
+                <div class="stat-card stat-pending">
+                    <div class="stat-card-icon">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <div class="stat-card-info">
+                        <h3 id="pendingTasks">0</h3>
+                        <p>Pending</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search & Filter Bar -->
+            <section class="task-toolbar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search tasks..." oninput="searchTasks(this.value)">
+                </div>
+                <div class="toolbar-actions">
+                    <select id="sortSelect" onchange="filterTask(this.value)">
+                    	<option value="all">All Tasks</option>
+                        <option value="pending">Pending Tasks</option>
+                        <option value="completed">Completed Tasks</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Task List Section -->
+            <section class="task-section">
+                <div class="task-section-header">
+                    <h2 id="taskSectionTitle">
+                        <i class="fas fa-th-large"></i> All Tasks
+                    </h2>
+                    <span class="task-count" id="taskCount">0 tasks</span>
+                </div>
+
+                <!-- Task Grid - cards are rendered here by JS -->
+                <div class="task-grid" id="taskGrid">
+                    <!-- Empty state (shown when no tasks exist) -->
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3>No tasks yet</h3>
+                        <p>Click "Add Task" to create your first task and get started!</p>
+                        <button class="btn btn-primary" onclick="openTaskModal()">
+                            <i class="fas fa-plus"></i> Create First Task
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    
+    <div class="modal-overlay" id="taskModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">
+                    <i class="fas fa-plus-circle"></i> Add New Task
+                </h2>
+                <button class="modal-close" onclick="closeTaskModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="taskForm" onsubmit="return false;">
+                <div class="modal-body">
+                    <!-- Hidden field for editing -->
+                    <input type="hidden" id="taskId" value="">
+
+                    <div class="form-group">
+                        <label for="taskTitle">
+                            <i class="fas fa-heading"></i> Task Title
+                        </label>
+                        <input 
+                            type="text" 
+                            id="taskTitle" 
+                            placeholder="What needs to be done?" 
+                            required 
+                            maxlength="100"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label for="taskDescription">
+                            <i class="fas fa-align-left"></i> Description
+                        </label>
+                        <textarea 
+                            id="taskDescription" 
+                            placeholder="Add more details about this task..." 
+                            rows="4"
+                            maxlength="500"
+                        ></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" onclick="closeTaskModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="taskSubmitBtn">
+                        <i class="fas fa-save"></i> Save Task
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===========================
+         DELETE CONFIRMATION MODAL
+    =========================== -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal modal-sm">
+            <div class="modal-header">
+                <h2><i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i> Confirm Delete</h2>
+                <button class="modal-close" onclick="closeDeleteModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this task? This action cannot be undone.</p>
+                <input type="hidden" id="deleteTaskId" value="">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeDeleteModal()">Cancel</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn" onclick="confirmDeleteTask()">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/script.js">
+    </script>
+    
+    <script>
+    	initDashboard();
+	</script>
+    
+</body>
+
+</html>

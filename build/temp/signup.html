@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Create Account</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+
+</head>
+<body>
+  
+    <div class="auth-page">
+        <div class="auth-left">
+            <div class="auth-left-content">
+                <a href="index.html" class="auth-logo">
+                    <i class="fas fa-check-circle"></i>
+                    <span>TaskFlow</span>
+                </a>
+                <h1>Get Started</h1>
+                <p>Create your free account and start managing your tasks like a pro.</p>
+                <div class="auth-illustration">
+                    <div class="auth-float-card">
+                        <i class="fas fa-rocket"></i>
+                        <div>
+                            <strong>Free Forever</strong>
+                            <span>No credit card required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="auth-right">
+            <div class="auth-form-container">
+                <h2>Create Account</h2>
+                <p class="auth-form-subtitle">Fill in your details to get started</p>
+
+                <!-- Registration error/success messages -->
+                <div id="registerAlert" class="alert" style="display: none;"></div>
+
+                <form id="registerForm" class="auth-form" onsubmit="return false;">
+                    <!-- Username Input -->
+                    <div class="form-group">
+                        <label for="regUsername">
+                            <i class="fas fa-user"></i> Username
+                        </label>
+                        <input 
+                            type="text" 
+                            id="regUsername" 
+                            placeholder="Choose a username" 
+                            required 
+                            minlength="3"
+                            autocomplete="username"
+                        >
+                    </div>
+
+                    <!-- Email Input -->
+                    <div class="form-group">
+                        <label for="regEmail">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input 
+                            type="email" 
+                            id="regEmail" 
+                            placeholder="Enter your email" 
+                            required
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group">
+                        <label for="regPassword">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <div class="password-wrapper">
+                            <input 
+                                type="password" 
+                                id="regPassword" 
+                                placeholder="Create a password (min 6 chars)" 
+                                required 
+                                minlength="6"
+                                autocomplete="new-password"
+                            >
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('regPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password Input -->
+                    <div class="form-group">
+                        <label for="regConfirmPassword">
+                            <i class="fas fa-lock"></i> Confirm Password
+                        </label>
+                        <div class="password-wrapper">
+                            <input 
+                                type="password" 
+                                id="regConfirmPassword" 
+                                placeholder="Confirm your password" 
+                                required 
+                                minlength="6"
+                                autocomplete="new-password"
+                            >
+                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('regConfirmPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary btn-block" id="registerBtn">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+
+                <p class="auth-switch">
+                    Already have an account? <a href="login.html">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js"></script> -->
+     <script src="scripts/script.js" defer></script>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Personal Task Manager</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="scripts/script.js" defer></script>
+</head>
+<body>
+  
+    <div class="landing-page">
+        <!-- Navbar -->
+        <nav class="landing-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-check-circle"></i>
+                    <span>TaskFlow</span>
+                </div>
+                <div class="nav-links">
+                    <a href="login.html" class="btn btn-ghost"  >Sign In</a>
+                    <a href="signup.html" class="btn btn-primary">Get Started Free</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-bolt"></i>
+                    <span>Supercharge Your Productivity</span>
+                </div>
+                <h1>Manage Your Tasks<br><span class="gradient-text">Like a Pro</span></h1>
+                <p class="hero-subtitle">
+                    TaskFlow helps you organize, track, and complete your tasks efficiently.
+                    A clean, modern task manager that works right in your browser.
+                </p>
+                <div class="hero-cta">
+                    <a href="signup.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket"></i> Start For Free
+                    </a>
+                    <a href="login.html" class="btn btn-outline btn-lg">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-tasks"></i>
+                        <div>
+                            <strong>Easy</strong>
+                            <span>Task Management</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <strong>Secure</strong>
+                            <span>Local Storage</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>
+                            <strong>Responsive</strong>
+                            <span>All Devices</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <div class="mini-task">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span>Design new landing page</span>
+                    </div>
+                    <div class="mini-task">
+                        <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                        <span>Review pull requests</span>
+                    </div>
+                    <div class="mini-task pending">
+                        <i class="far fa-circle" style="color: #94a3b8;"></i>
+                        <span>Deploy to production</span>
+                    </div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="mini-stats">
+                        <div class="mini-stat-item">
+                            <span class="mini-stat-num">12</span>
+                            <span class="mini-stat-label">Total</span>
+                        </div>
+                        <div class="mini-stat-item">
+                            <span class="mini-stat-num" style="color: #10b981;">8</span>
+                            <span class="mini-stat-label">Done</span>
+                        </div>
+                        <div class="mini-stat-item">
+                            <span class="mini-stat-num" style="color: #f59e0b;">4</span>
+                            <span class="mini-stat-label">Pending</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-plus"></i>
+                    <span>Add New Task</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="features-container">
+                <h2>Everything You Need</h2>
+                <p class="features-subtitle">Powerful features to keep you organized and productive</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
+                        <h3>Create Tasks</h3>
+                        <p>Quickly add tasks with titles, descriptions, and track their progress.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                        <h3>Track Progress</h3>
+                        <p>Mark tasks complete, view stats, and stay on top of your workflow.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Persistent Storage</h3>
+                        <p>Your tasks are saved in the browser and load automatically next time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3>User Accounts</h3>
+                        <p>Register and login to keep your tasks private and secure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="landing-footer">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <i class="fas fa-check-circle"></i>
+                    <span>TaskFlow</span>
+                </div>
+                <p>&copy; 2025 TaskFlow. Built with HTML, CSS & JavaScript.</p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
