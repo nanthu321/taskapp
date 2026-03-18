@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("email", email);
         formData.append("password", password);
 
-        fetch("register", {
+        fetch("/taskapp/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	    formData.append("email", email);
 	    formData.append("password", password);
 		
-	    fetch("login", {
+	    fetch("/taskapp/login", {
 	        method: "POST",
 	        headers: {
 	            "Content-Type": "application/x-www-form-urlencoded"
