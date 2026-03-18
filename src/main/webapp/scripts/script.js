@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("email", email);
         formData.append("password", password);
 
-        fetch("/taskapp/register", {
+        fetch("/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	    formData.append("email", email);
 	    formData.append("password", password);
 		
-	    fetch("/taskapp/login", {
+	    fetch("/login", {
 	        method: "POST",
 	        headers: {
 	            "Content-Type": "application/x-www-form-urlencoded"
@@ -197,7 +197,7 @@ function addTask(title, description){
 	const formData = new URLSearchParams();
 	formData.append("title", title);
 	formData.append("description", description);
-	fetch("/taskapp/tasks", {
+	fetch("/tasks", {
         method: "POST",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -217,7 +217,7 @@ function addTask(title, description){
 
 function updateTask(taskId, title, description) {
 
-    fetch("/taskapp/tasks", {
+    fetch("/tasks", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -247,7 +247,7 @@ function loadTasks() {
 	const pendingTasks = document.getElementById("pendingTasks");
 	const taskCount = document.getElementById("taskCount");
 	
-    fetch("/taskapp/tasks")
+    fetch("/tasks")
         .then(res => res.json())
         .then(tasks => {
 			userTasks = tasks;
@@ -402,7 +402,7 @@ function confirmDeleteTask() {
 }
 
 function deleteTask(taskId){
-    fetch(`/taskapp/tasks?taskId=${taskId}`, {
+    fetch(`/tasks?taskId=${taskId}`, {
         method: "DELETE"
     })
     .then(res => res.text())
@@ -439,7 +439,7 @@ function toggleTaskStatus(taskId,status){
 	formData.append("status",status);
 	formData.append("action","toggle");
 	
-	fetch("/taskapp/tasks", {
+	fetch("/tasks", {
 	    method: "POST",
 	    headers: {
 	        "Content-Type": "application/x-www-form-urlencoded"
@@ -588,7 +588,7 @@ function renderTask(tasks){
 
 
 function logoutUser() {
-    fetch("/taskapp/logout")
+    fetch("/logout")
         .then(() => {
             localStorage.clear(); 
             window.location.replace("login.html");
