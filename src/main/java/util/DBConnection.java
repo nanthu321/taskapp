@@ -15,6 +15,13 @@ public class DBConnection {
             HikariConfig config = new HikariConfig();
 
             String url = System.getenv("DB_URL");
+
+            if (url != null && url.startsWith("mysql://")) {
+                url = "jdbc:" + url;
+            } else if (url != null && !url.startsWith("jdbc:")) {
+                url = "jdbc:mysql://" + url; // fallback if it's just host:port/db
+            }
+
             String user = System.getenv("DB_USER");
             String pass = System.getenv("DB_PASSWORD");
 
