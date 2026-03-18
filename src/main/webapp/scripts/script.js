@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("email", email);
         formData.append("password", password);
 
-        fetch("/taskapp/register", {
+        fetch("register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -99,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             })
             .catch(error => {
+				console.error("Signup error:", error);
                 showAlert("Server error. Please try again.", "error", regAlertBox);
                 submitBtn.disabled = false;
                 submitBtn.textContent = "Create Account";
@@ -132,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	    formData.append("email", email);
 	    formData.append("password", password);
 		
-	    fetch("/taskapp/login", {
+	    fetch("login", {
 	        method: "POST",
 	        headers: {
 	            "Content-Type": "application/x-www-form-urlencoded"
